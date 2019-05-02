@@ -19,5 +19,5 @@ object ChecksumAccumulator {
       val cs = acc.checksum()
       cache += (s -> cs)
       cs
-    } 
+    }
 }
