@@ -1,4 +1,8 @@
-class ArrayElement(val contents: Array[String]) extends Element
+class ArrayElement extends Element {
+  override def demo(): Unit = {
+    println("ArrayElement's implementation invoked")
+  }
+}
 
 class Cat {
   val dangerous = false
