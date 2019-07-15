@@ -1,9 +1,11 @@
+import org.stairwaybook.expr.{BinOp, Expr, Number, UnOp}
+
 object SimplifyTop {
 
   def simplifyTop(expr: Expr): Expr = expr match {
     case UnOp("-", UnOp("-", e))         => e // Double negation
-    case BinOp("+", e, MyNumber(0))      => e // Adding zero
-    case BinOp("*", e, MyNumber(1))      => e // Multiplying by one
+    case BinOp("+", e, Number(0))      => e // Adding zero
+    case BinOp("*", e, Number(1))      => e // Multiplying by one
     case UnOp("abs", e @ UnOp("abs", _)) => e // variable binding
     case _                               => expr
   }
@@ -32,7 +34,7 @@ object SimplifyTop {
   }
 
   def constructorPattern(expr: Expr) = expr match {
-    case BinOp("+", e, MyNumber(0)) => println("a deep match")
+    case BinOp("+", e, Number(0)) => println("a deep match")
     case _                          =>
   }
 
