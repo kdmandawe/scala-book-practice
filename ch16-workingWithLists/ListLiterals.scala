@@ -26,13 +26,32 @@ object ListLiterals extends App {
   // right associativity
   val nums = 1 :: 2 :: 3 :: 4 :: Nil
 
-  println(Nil.head)
+//  println(Nil.head)
 
-  def isort(xs: List[Int]): List[Int] =
-    if (xs.isEmpty) Nil
-    else insert(xs.head, isort(xs.tail))
+//  def isort(xs: List[Int]): List[Int] =
+//    if (xs.isEmpty) Nil
+//    else insert(xs.head, isort(xs.tail))
+//
+//  def insert(x: Int, xs: List[Int]): List[Int] =
+//    if (xs.isEmpty || x <= xs.head) x :: xs
+//    else xs.head :: insert(x, xs.tail)
 
-  def insert(x: Int, xs: List[Int]): List[Int] =
-    if (xs.isEmpty || x <= xs.head) x :: xs
-    else xs.head :: insert(x, xs.tail)
+//  val List(a, b, c) = fruit
+
+//  println(a)
+
+  val a :: b :: rest = fruit
+  println(a, b, rest)
+
+  def isort(xs: List[Int]): List[Int] = xs match {
+    case List()   => List()
+    case x :: xs1 => insert(x, isort(xs1))
+  }
+
+  def insert(x: Int, xs: List[Int]): List[Int] = xs match {
+    case List() => List(x)
+    case y :: ys =>
+      if (x <= y) x :: ys
+      else y :: insert(x, ys)
+  }
 }
