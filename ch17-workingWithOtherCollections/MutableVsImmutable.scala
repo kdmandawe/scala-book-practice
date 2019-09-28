@@ -7,4 +7,16 @@ object MutableVsImmutable extends App {
 
   println(people)
 
+  people -= "Jane"
+  println(people)
+
+  people ++= List("Tom", "Harry")
+  println(people)
+
+  import scala.collection.mutable.Map  // will make Map mutable
+  var capital = Map("US" -> "Washington", "France" -> "Paris")
+  capital += ("Japan" -> "Tokyo")
+  println(capital("France"))
+
+
 }
