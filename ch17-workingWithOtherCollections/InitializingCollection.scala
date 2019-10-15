@@ -31,4 +31,15 @@ object InitializingCollection extends App {
   println(treeSet2.toList)
   println(treeSet2.toArray)
 
+  // converting between mutable and immutable sets and maps
+  val mutaSet = mutable.Set.empty ++= treeSet2
+  println(mutaSet)
+  val immutaSet = Set.empty ++ mutaSet
+  println(immutaSet)
+
+  val mutaMap = mutable.Map("i" -> 1, "ii" -> 2)
+  println(mutaMap)
+  val immutaMap = Map.empty ++ mutaMap
+  println(immutaMap)
+
 }
