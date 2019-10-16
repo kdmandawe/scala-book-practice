@@ -12,10 +12,10 @@ class SlowHeadQueue[T](smele: List[T]) { // Not efficient - enqueue is already O
 
 }
 
-trait Queue[T] {
+trait Queue[+T] {
   def head: T
   def tail: Queue[T]
-  def enqueue(x: T): Queue[T]
+  def enqueue[U >: T](x: U): Queue[U]
 }
 
 object Queue {
@@ -37,7 +37,7 @@ object Queue {
       val q = mirror
       new QueueImpl(q.leading.tail, q.trailing)
     }
-    def enqueue(x: T) =
+    def enqueue[U >: T](x: U): Queue[U] =
       new QueueImpl(leading, x :: trailing)
   }
 }
@@ -52,6 +52,10 @@ object MainApp extends App {
 
   def doesCompile(q: Queue[AnyRef]) = {
   }
+
+  val queue1 = Queue(1)
+  val queue2: Queue[Any] = queue1
+  println(queue2)
 
   doesCompile(Queue(""))
 }
