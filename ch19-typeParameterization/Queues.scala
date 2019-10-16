@@ -42,7 +42,7 @@ object Queue {
   }
 }
 
-object Main extends App {
+object MainApp extends App {
   val queue = Queue("")
   val new1 = queue.enqueue("hello")
   println(new1.head)
