@@ -12,50 +12,57 @@ class SlowHeadQueue[T](smele: List[T]) { // Not efficient - enqueue is already O
 
 }
 
-trait Queue[+T] {
-  def head: T
-  def tail: Queue[T]
-  def enqueue[U >: T](x: U): Queue[U]
-}
+//trait Queue[+T] {
+//  def head: T
+//  def tail: Queue[T]
+//  def enqueue[U >: T](x: U): Queue[U]
+//}
+//
+//object Queue {
+//  // constructs a queue with initial elements `xs`
+//  def apply[T](xs: T*): Queue[T] = new QueueImpl[T](xs.toList, Nil)
+//
+//  // Information hiding
+//  private class QueueImpl[T] (
+//                               private val leading: List[T],
+//                               private val trailing: List[T]
+//                             ) extends Queue[T] {
+//    private def mirror =
+//      if (leading.isEmpty)
+//        new QueueImpl(trailing.reverse, Nil)
+//      else
+//        this
+//    def head = mirror.leading.head
+//    def tail = {
+//      val q = mirror
+//      new QueueImpl(q.leading.tail, q.trailing)
+//    }
+//    def enqueue[U >: T](x: U) =
+//      new QueueImpl(leading, x :: trailing)
+//  }
+//}
 
-object Queue {
-  // constructs a queue with initial elements `xs`
-  def apply[T](xs: T*): Queue[T] = new QueueImpl[T](xs.toList, Nil)
+class Fruit
+class Apple extends Fruit
+class Orange extends Fruit
 
-  // Information hiding
-  private class QueueImpl[T] (
-                               private val leading: List[T],
-                               private val trailing: List[T]
-                             ) extends Queue[T] {
-    private def mirror =
-      if (leading.isEmpty)
-        new QueueImpl(trailing.reverse, Nil)
-      else
-        this
-    def head = mirror.leading.head
-    def tail = {
-      val q = mirror
-      new QueueImpl(q.leading.tail, q.trailing)
-    }
-    def enqueue[U >: T](x: U): Queue[U] =
-      new QueueImpl(leading, x :: trailing)
-  }
-}
-
-object MainApp extends App {
-  val queue = Queue("")
-  val new1 = queue.enqueue("hello")
-  println(new1.head)
-  println(new1.tail)
-  val new2 = new1.enqueue("world")
-  println(new2.head)
-
-  def doesCompile(q: Queue[AnyRef]) = {
-  }
-
-  val queue1 = Queue(1)
-  val queue2: Queue[Any] = queue1
-  println(queue2)
-
-  doesCompile(Queue(""))
-}
+//object Main extends App {
+//  val queue = Queue("")
+//  val new1 = queue.enqueue("hello")
+//  println(new1.head)
+//  println(new1.tail)
+//  val new2 = new1.enqueue("world")
+//  println(new2.head)
+//
+//  def doesCompile(q: Queue[AnyRef]) = {
+//    println("success")
+//  }
+//
+//  // covariance
+//  doesCompile(Queue(""))
+//
+//  // Covariance and Lower Bounds
+//  val queue2 = Queue(new Fruit)
+//  queue2.enqueue(new Orange)
+//
+//}
